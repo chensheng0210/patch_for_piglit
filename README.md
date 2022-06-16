@@ -1,0 +1,1 @@
+# patch_for_piglit
