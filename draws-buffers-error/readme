@@ -1,0 +1,5 @@
+问题：驱动使用该参数时，没有返回INVALID_ENUM值
+规范描述：OpenGL 3.1规范指明，glDrawBuffers使用FRONT, BACK, LEFT, RIGHT, and FRONT_AND_BACK参数是无效的，
+如果使用，返回INVALID_ENUM值。
+改进原理：在glDrawBuffers的实现中，去掉原先对FRONT, BACK, LEFT, RIGHT, and FRONT_AND_BACK参数的处理，改为默认分支。
+         在默认分支中，会对这些参数执行甄别处理即可
