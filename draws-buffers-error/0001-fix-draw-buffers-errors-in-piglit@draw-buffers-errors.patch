@@ -1,0 +1,56 @@
+From c4f9e8b64eb23c9d2779f3a6e9b7c52f67855df5 Mon Sep 17 00:00:00 2001
+From: csheng <chensheng1100@phytium.com.cn>
+Date: Wed, 15 Jun 2022 17:19:44 +0800
+Subject: [PATCH] fix draw-buffers-errors in piglit
+
+---
+ opengl/icdkit/opengl/lib/drivers/powervr/fast.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/opengl/icdkit/opengl/lib/drivers/powervr/fast.c b/opengl/icdkit/opengl/lib/drivers/powervr/fast.c
+index 8cdba42..ad6c917 100644
+--- a/opengl/icdkit/opengl/lib/drivers/powervr/fast.c
++++ b/opengl/icdkit/opengl/lib/drivers/powervr/fast.c
+@@ -2999,15 +2999,15 @@ IMG_INTERNAL GLvoid GLAPI __glim_DrawBuffersARB( GLsizei n, const GLenum *bufs)
+ 				{
+ 					break;
+ 				}
+-				case GL_FRONT:
++				//case GL_FRONT:
+ 				case GL_FRONT_LEFT:
+ 				{
+ 					uFronts++;
+ 					break;
+ 				}
+-				case GL_FRONT_AND_BACK:
+-				case GL_LEFT:
+-				{
++				//case GL_FRONT_AND_BACK:
++				//case GL_LEFT:
++				/*{
+ 					if (gc->modes.doubleBufferMode)
+ 					{
+ 						uFronts++;
+@@ -3018,8 +3018,8 @@ IMG_INTERNAL GLvoid GLAPI __glim_DrawBuffersARB( GLsizei n, const GLenum *bufs)
+ 						uFronts++;
+ 					}
+ 					break;
+-				}
+-				case GL_BACK:
++				}*/
++				//case GL_BACK:
+ 				case GL_BACK_LEFT:
+ 				if (gc->modes.doubleBufferMode)
+ 				{
+@@ -3029,7 +3029,7 @@ IMG_INTERNAL GLvoid GLAPI __glim_DrawBuffersARB( GLsizei n, const GLenum *bufs)
+ 				/* Deliberate fallthrough for setting GL_BACK on non double buffered devices */
+ 				__fallthrough;
+ 
+-				case GL_RIGHT:
++				//case GL_RIGHT:
+ 				case GL_BACK_RIGHT:
+ 				case GL_FRONT_RIGHT:
+ 				case GL_AUX0:
+-- 
+2.25.1
+
